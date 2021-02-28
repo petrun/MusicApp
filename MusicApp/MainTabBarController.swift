@@ -15,7 +15,7 @@ class MainTabBarController: UITabBarController {
         
         tabBar.tintColor = UIColor(hex: "#FD2D55")
         
-        let searchVC = SearchViewController()
+        let searchVC: SearchViewController = SearchViewController.loadFromStoryboard()
         let libraryVC = LibraryViewController()
         
         viewControllers  = [
