@@ -23,6 +23,8 @@
 		A12571B825E3249A00C9C155 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12571B725E3249A00C9C155 /* LibraryViewController.swift */; };
 		A12571BC25E32BE300C9C155 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12571BB25E32BE300C9C155 /* UIColor.swift */; };
 		A12571C125E339F300C9C155 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12571C025E339F300C9C155 /* Array.swift */; };
+		A15029FC25EC5AF9007D796B /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15029FB25EC5AF9007D796B /* TrackCell.xib */; };
+		A15029FF25EC5B32007D796B /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15029FE25EC5B32007D796B /* TrackCell.swift */; };
 		A16BAF4925EA9959009EB3CF /* SearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A16BAF4825EA9959009EB3CF /* SearchViewController.storyboard */; };
 		A16BAF4E25EAA07B009EB3CF /* UIViewController + Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16BAF4D25EAA07B009EB3CF /* UIViewController + Storyboard.swift */; };
 		A1E2AB8A25E7105900554738 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E2AB8925E7105900554738 /* SearchResponse.swift */; };
@@ -50,6 +52,8 @@
 		A12571B725E3249A00C9C155 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		A12571BB25E32BE300C9C155 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		A12571C025E339F300C9C155 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		A15029FB25EC5AF9007D796B /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
+		A15029FE25EC5B32007D796B /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		A16BAF4825EA9959009EB3CF /* SearchViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchViewController.storyboard; sourceTree = "<group>"; };
 		A16BAF4D25EAA07B009EB3CF /* UIViewController + Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Storyboard.swift"; sourceTree = "<group>"; };
 		A1E2AB8925E7105900554738 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
@@ -82,6 +86,7 @@
 		A11B685B25E9EC270013C822 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				A15029FA25EC5ACF007D796B /* Cell */,
 				A16BAF4825EA9959009EB3CF /* SearchViewController.storyboard */,
 				A11B686125E9ECE90013C822 /* SearchViewController.swift */,
 				A11B686225E9ECE90013C822 /* SearchInteractor.swift */,
@@ -118,7 +123,6 @@
 				A125719725E2FF8500C9C155 /* AppDelegate.swift */,
 				A125719925E2FF8500C9C155 /* SceneDelegate.swift */,
 				A12571AC25E31AE000C9C155 /* MainTabBarController.swift */,
-				A1E2AB8925E7105900554738 /* SearchResponse.swift */,
 				A125719B25E2FF8500C9C155 /* ContentView.swift */,
 				A125719D25E2FF8600C9C155 /* Assets.xcassets */,
 				A12571A225E2FF8600C9C155 /* LaunchScreen.storyboard */,
@@ -149,9 +153,27 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		A15029FA25EC5ACF007D796B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A15029FB25EC5AF9007D796B /* TrackCell.xib */,
+				A15029FE25EC5B32007D796B /* TrackCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		A1502A0125EC6377007D796B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A1E2AB8925E7105900554738 /* SearchResponse.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A16BAF4625EA989A009EB3CF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A1502A0125EC6377007D796B /* Models */,
 				A1E2AB8C25E7442800554738 /* NetworkService.swift */,
 			);
 			path = Services;
@@ -225,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A12571A425E2FF8600C9C155 /* LaunchScreen.storyboard in Resources */,
+				A15029FC25EC5AF9007D796B /* TrackCell.xib in Resources */,
 				A12571A125E2FF8600C9C155 /* Preview Assets.xcassets in Resources */,
 				A16BAF4925EA9959009EB3CF /* SearchViewController.storyboard in Resources */,
 				A125719E25E2FF8600C9C155 /* Assets.xcassets in Resources */,
@@ -289,6 +312,7 @@
 				A125719825E2FF8500C9C155 /* AppDelegate.swift in Sources */,
 				A11B686525E9ECE90013C822 /* SearchWorker.swift in Sources */,
 				A125719A25E2FF8500C9C155 /* SceneDelegate.swift in Sources */,
+				A15029FF25EC5B32007D796B /* TrackCell.swift in Sources */,
 				A11B686725E9ECE90013C822 /* SearchModels.swift in Sources */,
 				A12571AD25E31AE000C9C155 /* MainTabBarController.swift in Sources */,
 				A12571B825E3249A00C9C155 /* LibraryViewController.swift in Sources */,
