@@ -17,9 +17,10 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     var interactor: SearchBusinessLogic?
     var router: (NSObjectProtocol & SearchRoutingLogic)?
     
-    let searchController = UISearchController(searchResultsController: nil)
+    private let searchController = UISearchController(searchResultsController: nil)
     private var searchViewModel = SearchViewModel.init(cells: [])
     private var timer: Timer?
+    private lazy var footerView = FooterView()
     
     @IBOutlet var table: UITableView!
     
@@ -61,6 +62,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     private func setupTableView() {        
         let trackCellNib = UINib(nibName: "TrackCell", bundle: nil)
         table.register(trackCellNib, forCellReuseIdentifier: TrackCell.reuseId)
+        table.tableFooterView = footerView
     }
     
     func displayData(viewModel: Search.Model.ViewModel.ViewModelData) {
@@ -68,6 +70,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         case .displayTracks(searchViewModel: let searchViewModel):
             self.searchViewModel = searchViewModel
             table.reloadData()
+            footerView.hideLoader()
         }
     }
     
@@ -93,14 +96,28 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         84
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Please enter search term above..."
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        searchViewModel.cells.count > 0 ? 0 : 250
+    }
 }
 
+// MARK: - UISearchBarDelegate
+
 extension SearchViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
-        
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {        
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
+            self?.footerView.showLoader()
             self?.interactor?.makeRequest(request: Search.Model.Request.RequestType.getTracks(searchText: searchText))
         })
     }
