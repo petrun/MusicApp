@@ -110,7 +110,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cellViewModel = searchViewModel.cells[indexPath.row]
+        let cellViewModel = searchViewModel.cells[indexPath.row]
+        let trackDetailView = Bundle.main.loadNibNamed("TrackDetailView", owner: self)?.first as! TrackDetailView
         
 //        let window = UIApplication.shared.keyWindow
 //        'keyWindow' was deprecated in iOS 13.0: Should not be used for applications that support multiple scenes as it returns a key window across all connected scenes
@@ -121,8 +122,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             .first?.windows
             .filter({$0.isKeyWindow}).first
         
-        let trackDetailView = Bundle.main.loadNibNamed("TrackDetailView", owner: self)?.first as! TrackDetailView
         window?.addSubview(trackDetailView, stretchToFit: true)
+        
+        trackDetailView.set(viewModel: cellViewModel)
     }
 }
 

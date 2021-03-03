@@ -91,7 +91,7 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qor-yr-nmf">
                                     <rect key="frame" x="124.5" y="0.0" width="125" height="213"/>
-                                    <state key="normal" image="Pause"/>
+                                    <state key="normal" image="Pause Button"/>
                                     <connections>
                                         <action selector="playPauseAction:" destination="h9z-g0-5kz" eventType="touchUpInside" id="7T5-tO-bhm"/>
                                     </connections>
@@ -141,7 +141,7 @@
         <image name="Fast forward" width="34" height="20"/>
         <image name="Icon Max" width="17" height="17"/>
         <image name="Icon Min" width="7" height="12"/>
-        <image name="Pause" width="28" height="36"/>
+        <image name="Pause Button" width="28" height="36"/>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
