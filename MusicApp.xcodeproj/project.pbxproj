@@ -11,6 +11,8 @@
 		A114629D25EDD3A000D190B8 /* TrackDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A114629C25EDD3A000D190B8 /* TrackDetailView.xib */; };
 		A11462A025EDD3A900D190B8 /* TrackDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114629F25EDD3A900D190B8 /* TrackDetailView.swift */; };
 		A118565A25F029FE004B693F /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A118565925F029FE004B693F /* UIView.swift */; };
+		A118565D25F058C0004B693F /* CMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A118565C25F058C0004B693F /* CMTime.swift */; };
+		A118566025F0737A004B693F /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A118565F25F0737A004B693F /* AudioPlayerService.swift */; };
 		A11B686425E9ECE90013C822 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11B685D25E9ECE90013C822 /* SearchPresenter.swift */; };
 		A11B686525E9ECE90013C822 /* SearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11B685E25E9ECE90013C822 /* SearchWorker.swift */; };
 		A11B686625E9ECE90013C822 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11B685F25E9ECE90013C822 /* SearchRouter.swift */; };
@@ -42,6 +44,8 @@
 		A114629C25EDD3A000D190B8 /* TrackDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackDetailView.xib; sourceTree = "<group>"; };
 		A114629F25EDD3A900D190B8 /* TrackDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetailView.swift; sourceTree = "<group>"; };
 		A118565925F029FE004B693F /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		A118565C25F058C0004B693F /* CMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
+		A118565F25F0737A004B693F /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 		A11B685D25E9ECE90013C822 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		A11B685E25E9ECE90013C822 /* SearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorker.swift; sourceTree = "<group>"; };
 		A11B685F25E9ECE90013C822 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 				A12571C025E339F300C9C155 /* Array.swift */,
 				A16BAF4D25EAA07B009EB3CF /* UIViewController + Storyboard.swift */,
 				A118565925F029FE004B693F /* UIView.swift */,
+				A118565C25F058C0004B693F /* CMTime.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -203,6 +208,7 @@
 			children = (
 				A1502A0125EC6377007D796B /* Models */,
 				A1E2AB8C25E7442800554738 /* NetworkService.swift */,
+				A118565F25F0737A004B693F /* AudioPlayerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -333,9 +339,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A118565A25F029FE004B693F /* UIView.swift in Sources */,
+				A118566025F0737A004B693F /* AudioPlayerService.swift in Sources */,
 				A11B686825E9ECE90013C822 /* SearchViewController.swift in Sources */,
 				A11B686425E9ECE90013C822 /* SearchPresenter.swift in Sources */,
 				A16BAF4E25EAA07B009EB3CF /* UIViewController + Storyboard.swift in Sources */,
+				A118565D25F058C0004B693F /* CMTime.swift in Sources */,
 				A114629825EDBC8F00D190B8 /* FooterView.swift in Sources */,
 				A11B686925E9ECE90013C822 /* SearchInteractor.swift in Sources */,
 				A1E2AB8D25E7442800554738 /* NetworkService.swift in Sources */,
