@@ -8,6 +8,11 @@
 import UIKit
 import AVFoundation
 
+protocol TrackListDelegate: class {
+    func getNextTrack() -> SearchViewModel.Cell?
+    func getPreviousTrack() -> SearchViewModel.Cell?
+}
+
 class TrackDetailView: UIView {
     @IBOutlet var trackImageView: UIImageView!
     @IBOutlet var currentTimeSlider: UISlider!
@@ -20,6 +25,7 @@ class TrackDetailView: UIView {
     
     private var player: AudioPlayerProtocol = AudioPlayer()
     private let scale: CGFloat = 0.8
+    weak var delegate: TrackListDelegate?
     
     override class func awakeFromNib() {
         super.awakeFromNib()
@@ -84,19 +90,18 @@ class TrackDetailView: UIView {
     }
     
     // MARK: - IBActions
-    
-    @IBAction func dragDownButtonTapped(_ sender: UIButton) {
+    @IBAction func dragDownButtonTapped() {
         self.removeFromSuperview()
     }
     
-    @IBAction func handleCurrentTimeSlider(_ sender: UISlider) {
+    @IBAction func handleCurrentTimeSlider() {
         guard let durationSeconds = player.durationSeconds else { return }
         let percentage = currentTimeSlider.value
         let seekTimeSeconds = Float64(percentage) * durationSeconds
         player.seek(to: seekTimeSeconds)
     }
-    
-    @IBAction func playPauseAction(_ sender: UIButton) {
+
+    @IBAction func playPauseAction() {
         if player.currentTimeSeconds == player.durationSeconds {
             player.resetTrack()
         }
@@ -106,15 +111,18 @@ class TrackDetailView: UIView {
             player.play()
         }
     }
-    
-    @IBAction func previousTrack(_ sender: UIButton) {
-        
+
+    @IBAction func previousTrack() {
+        guard let track = delegate?.getPreviousTrack() else { return }
+        set(viewModel: track)
     }
-    
-    @IBAction func nextTrack(_ sender: UIButton) {
+
+    @IBAction func nextTrack() {
+        guard let track = delegate?.getNextTrack() else { return }
+        set(viewModel: track)
     }
-    
-    @IBAction func handleVolumeSlider(_ sender: UISlider) {
+
+    @IBAction func handleVolumeSlider() {
         player.volume = volumeSlider.value
     }
     

@@ -24,7 +24,7 @@
                             </constraints>
                             <state key="normal" image="Drag Down"/>
                             <connections>
-                                <action selector="dragDownButtonTapped:" destination="h9z-g0-5kz" eventType="touchUpInside" id="7Hz-JF-fXW"/>
+                                <action selector="dragDownButtonTapped" destination="h9z-g0-5kz" eventType="touchUpInside" id="XeQ-fo-nAe"/>
                             </connections>
                         </button>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vmJ-AF-jxM">
@@ -40,7 +40,7 @@
                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="WE5-KI-cS6">
                                     <rect key="frame" x="-2" y="0.0" width="378" height="31"/>
                                     <connections>
-                                        <action selector="handleCurrentTimeSlider:" destination="h9z-g0-5kz" eventType="valueChanged" id="fx2-s5-DwO"/>
+                                        <action selector="handleCurrentTimeSlider" destination="h9z-g0-5kz" eventType="valueChanged" id="Tli-3l-RF0"/>
                                     </connections>
                                 </slider>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="lKd-oc-ioq">
@@ -86,29 +86,29 @@
                                     <rect key="frame" x="0.0" y="0.0" width="124.5" height="213"/>
                                     <state key="normal" image="Back track"/>
                                     <connections>
-                                        <action selector="previousTrack:" destination="h9z-g0-5kz" eventType="touchUpInside" id="UIo-pN-bqG"/>
+                                        <action selector="previousTrack" destination="h9z-g0-5kz" eventType="touchUpInside" id="XUQ-6c-O5J"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qor-yr-nmf">
                                     <rect key="frame" x="124.5" y="0.0" width="125" height="213"/>
                                     <state key="normal" image="Pause Button"/>
                                     <connections>
-                                        <action selector="playPauseAction:" destination="h9z-g0-5kz" eventType="touchUpInside" id="7T5-tO-bhm"/>
+                                        <action selector="playPauseAction" destination="h9z-g0-5kz" eventType="touchUpInside" id="PBq-Fh-fOp"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TRU-0m-LW7" userLabel="Next Track">
                                     <rect key="frame" x="249.5" y="0.0" width="124.5" height="213"/>
                                     <state key="normal" image="Fast forward"/>
                                     <connections>
-                                        <action selector="nextTrack:" destination="h9z-g0-5kz" eventType="touchUpInside" id="skH-Zk-m13"/>
+                                        <action selector="nextTrack" destination="h9z-g0-5kz" eventType="touchUpInside" id="JeU-5O-bv0"/>
                                     </connections>
                                 </button>
                             </subviews>
                         </stackView>
-                        <slider opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="Icon Min" maximumValueImage="Icon Max" translatesAutoresizingMaskIntoConstraints="NO" id="5r2-Fh-9Rh">
+                        <slider opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="Icon Min" maximumValueImage="Icon Max" translatesAutoresizingMaskIntoConstraints="NO" id="5r2-Fh-9Rh" userLabel="Volume Slider">
                             <rect key="frame" x="-2" y="788" width="378" height="31"/>
                             <connections>
-                                <action selector="handleVolumeSlider:" destination="h9z-g0-5kz" eventType="valueChanged" id="6NW-fk-Ppi"/>
+                                <action selector="handleVolumeSlider" destination="h9z-g0-5kz" eventType="valueChanged" id="w5A-Qf-g52"/>
                             </connections>
                         </slider>
                     </subviews>
@@ -130,7 +130,7 @@
                 <outlet property="playPauseButton" destination="Qor-yr-nmf" id="mVp-Ny-1bA"/>
                 <outlet property="trackImageView" destination="vmJ-AF-jxM" id="lZ7-MO-MAz"/>
                 <outlet property="trackNameLabel" destination="uDW-ux-rhi" id="mN2-ib-U4u"/>
-                <outlet property="volumeSlider" destination="5r2-Fh-9Rh" id="Ic8-dW-YdP"/>
+                <outlet property="volumeSlider" destination="5r2-Fh-9Rh" id="TK7-6w-qTf"/>
             </connections>
             <point key="canvasLocation" x="-284" y="166"/>
         </view>

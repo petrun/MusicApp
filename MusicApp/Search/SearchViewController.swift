@@ -124,6 +124,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         window?.addSubview(trackDetailView, stretchToFit: true)
         
+        trackDetailView.delegate = self
         trackDetailView.set(viewModel: cellViewModel)
     }
 }
@@ -138,4 +139,30 @@ extension SearchViewController: UISearchBarDelegate {
             self?.interactor?.makeRequest(request: Search.Model.Request.RequestType.getTracks(searchText: searchText))
         })
     }
+}
+
+
+extension SearchViewController: TrackListDelegate {
+    
+    private func getTrack(isNextTrack: Bool) -> SearchViewModel.Cell? {
+        guard let indexPath = table.indexPathForSelectedRow else { return nil }
+        
+        let newIndex = isNextTrack ? indexPath.row + 1 : indexPath.row - 1
+        guard newIndex >= 0 && newIndex < searchViewModel.cells.count else { return nil }
+        
+        let newIndexPath = IndexPath(row: newIndex, section: indexPath.section)
+        
+        table.selectRow(at: newIndexPath, animated: false, scrollPosition: .top)
+        return searchViewModel.cells[newIndex]
+    }
+    
+    func getNextTrack() -> SearchViewModel.Cell? {
+        return getTrack(isNextTrack: true)
+    }
+    
+    func getPreviousTrack() -> SearchViewModel.Cell? {
+        return getTrack(isNextTrack: false)
+    }
+    
+    
 }
