@@ -42,7 +42,8 @@ class TrackDetailView: UIView {
         currentTimeSlider.value = 0
         
         player.delegate = self
-        player.addTrack(viewModel.previewUrl)
+        guard let previewUrl = viewModel.previewUrl else { return }
+        player.add(trackUrlString: previewUrl)
         player.play()
     }
     
@@ -96,10 +97,7 @@ class TrackDetailView: UIView {
     }
     
     @IBAction func playPauseAction(_ sender: UIButton) {
-        guard let durationSeconds = player.durationSeconds else { return }
-        let currentTimeSeconds = player.currentTimeSeconds
-        
-        if currentTimeSeconds == durationSeconds {
+        if player.currentTimeSeconds == player.durationSeconds {
             player.resetTrack()
         }
         if player.isPlaying {

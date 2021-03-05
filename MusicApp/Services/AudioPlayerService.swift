@@ -15,7 +15,8 @@ protocol AudioPlayerProtocol: class {
     var durationSeconds: Float64? { get }
     var duration: CMTime? { get }
     var delegate: AudioPlayerDelegate? { get set }
-    func addTrack(_ trackUrlString: String?)
+    
+    func add(trackUrlString: String)
     func play()
     func pause()
     func seek(to time: Float64)
@@ -71,8 +72,8 @@ class AudioPlayer: AVPlayer, AudioPlayerProtocol {
         self.seek(to: seekTime)
     }
     
-    func addTrack(_ trackUrlString: String?) {
-        guard let trackUrl = URL(string: trackUrlString ?? "") else {
+    func add(trackUrlString: String) {
+        guard let trackUrl = URL(string: trackUrlString) else {
             return
         }
         let trackItem = AVPlayerItem(url: trackUrl)
