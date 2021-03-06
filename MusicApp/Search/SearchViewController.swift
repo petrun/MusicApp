@@ -16,6 +16,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     
     var interactor: SearchBusinessLogic?
     var router: (NSObjectProtocol & SearchRoutingLogic)?
+    weak var tabBarDelegate: MainTabBarControllerDelegate?
     
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchViewModel = SearchViewModel.init(cells: [])
@@ -111,21 +112,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellViewModel = searchViewModel.cells[indexPath.row]
-        let trackDetailView = Bundle.main.loadNibNamed("TrackDetailView", owner: self)?.first as! TrackDetailView
-        
-//        let window = UIApplication.shared.keyWindow
-//        'keyWindow' was deprecated in iOS 13.0: Should not be used for applications that support multiple scenes as it returns a key window across all connected scenes
-        let window = UIApplication.shared.connectedScenes
-            .filter({$0.activationState == .foregroundActive})
-            .map({$0 as? UIWindowScene})
-            .compactMap({$0})
-            .first?.windows
-            .filter({$0.isKeyWindow}).first
-        
-        window?.addSubview(trackDetailView, stretchToFit: true)
-        
-        trackDetailView.delegate = self
-        trackDetailView.set(viewModel: cellViewModel)
+
+        self.tabBarDelegate?.maximizeTrackDetailContoller(viewModel: cellViewModel)
     }
 }
 
@@ -163,6 +151,5 @@ extension SearchViewController: TrackListDelegate {
     func getPreviousTrack() -> SearchViewModel.Cell? {
         return getTrack(isNextTrack: false)
     }
-    
     
 }

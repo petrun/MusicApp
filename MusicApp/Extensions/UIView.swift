@@ -8,14 +8,33 @@
 import UIKit
 
 extension UIView {
+    
     public func addSubview(_ subview: UIView, stretchToFit: Bool = false) {
         addSubview(subview)
         if stretchToFit {
-            subview.translatesAutoresizingMaskIntoConstraints = false
-            leftAnchor.constraint(equalTo: subview.leftAnchor).isActive = true
-            rightAnchor.constraint(equalTo: subview.rightAnchor).isActive = true
-            topAnchor.constraint(equalTo: subview.topAnchor).isActive = true
-            bottomAnchor.constraint(equalTo: subview.bottomAnchor).isActive = true
+            stretch(subview: subview)
+//            subview.translatesAutoresizingMaskIntoConstraints = false
+//            leftAnchor.constraint(equalTo: subview.leftAnchor).isActive = true
+//            rightAnchor.constraint(equalTo: subview.rightAnchor).isActive = true
+//            topAnchor.constraint(equalTo: subview.topAnchor).isActive = true
+//            bottomAnchor.constraint(equalTo: subview.bottomAnchor).isActive = true
         }
+    }
+    
+    public func stretch(subview: UIView) {
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        subview.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        subview.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        subview.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        subview.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
+//        leftAnchor.constraint(equalTo: subview.leftAnchor).isActive = true
+//        rightAnchor.constraint(equalTo: subview.rightAnchor).isActive = true
+//        topAnchor.constraint(equalTo: subview.topAnchor).isActive = true
+//        bottomAnchor.constraint(equalTo: subview.bottomAnchor).isActive = true
+    }
+    
+    class func loadFromNib<T: UIView>() -> T {
+        Bundle.main.loadNibNamed(String(describing: T.self), owner: self)?.first as! T
     }
 }

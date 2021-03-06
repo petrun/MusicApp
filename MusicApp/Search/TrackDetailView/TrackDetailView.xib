@@ -14,6 +14,67 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GSO-sF-zMU">
+                    <rect key="frame" x="0.0" y="44" width="414" height="64"/>
+                    <subviews>
+                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pJc-Ta-fnW">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                            <color key="backgroundColor" systemColor="systemGray3Color"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="dre-Mo-3mZ"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Cqh-4h-Jde">
+                            <rect key="frame" x="8" y="8" width="398" height="48"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tsM-ao-bm1">
+                                    <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="tsM-ao-bm1" secondAttribute="height" multiplier="1:1" id="RPx-dz-EJw"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMR-uy-fLg">
+                                    <rect key="frame" x="63" y="14" width="227" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wg2-3G-Roy">
+                                    <rect key="frame" x="305" y="9" width="30" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="wg2-3G-Roy" secondAttribute="height" multiplier="1:1" id="6AP-oy-4hP"/>
+                                        <constraint firstAttribute="height" constant="30" id="X27-V5-iet"/>
+                                    </constraints>
+                                    <state key="normal" image="Play Button"/>
+                                    <connections>
+                                        <action selector="playPauseAction" destination="h9z-g0-5kz" eventType="touchUpInside" id="6Cj-si-CZ1"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ac-MI-Xp5" userLabel="Mini Next Track">
+                                    <rect key="frame" x="350" y="0.0" width="48" height="48"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="4Ac-MI-Xp5" secondAttribute="height" multiplier="1:1" id="u4J-a3-TTF"/>
+                                    </constraints>
+                                    <state key="normal" image="Fast forward"/>
+                                    <connections>
+                                        <action selector="nextTrack" destination="h9z-g0-5kz" eventType="touchUpInside" id="d8h-yK-CFd"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                    <constraints>
+                        <constraint firstItem="Cqh-4h-Jde" firstAttribute="leading" secondItem="GSO-sF-zMU" secondAttribute="leading" constant="8" id="263-7k-7sI"/>
+                        <constraint firstAttribute="trailing" secondItem="Cqh-4h-Jde" secondAttribute="trailing" constant="8" id="4Pv-FG-oL6"/>
+                        <constraint firstItem="pJc-Ta-fnW" firstAttribute="top" secondItem="GSO-sF-zMU" secondAttribute="top" id="IuK-MH-QAh"/>
+                        <constraint firstItem="pJc-Ta-fnW" firstAttribute="leading" secondItem="GSO-sF-zMU" secondAttribute="leading" id="LOj-Fo-7mw"/>
+                        <constraint firstAttribute="trailing" secondItem="pJc-Ta-fnW" secondAttribute="trailing" id="Q4Y-Bk-Sq8"/>
+                        <constraint firstAttribute="height" constant="64" id="SWI-2Z-DGz"/>
+                        <constraint firstAttribute="bottom" secondItem="Cqh-4h-Jde" secondAttribute="bottom" constant="8" id="ady-ZZ-6n1"/>
+                        <constraint firstItem="Cqh-4h-Jde" firstAttribute="top" secondItem="GSO-sF-zMU" secondAttribute="top" constant="8" id="eya-JH-N9X"/>
+                    </constraints>
+                </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="c4K-oR-FaX">
                     <rect key="frame" x="20" y="44" width="374" height="818"/>
                     <subviews>
@@ -29,7 +90,6 @@
                         </button>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vmJ-AF-jxM">
                             <rect key="frame" x="0.0" y="35" width="374" height="374"/>
-                            <color key="backgroundColor" red="0.92549019610000005" green="0.18823529410000001" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="vmJ-AF-jxM" secondAttribute="height" multiplier="1:1" id="zXi-sv-k7U"/>
                             </constraints>
@@ -91,7 +151,7 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qor-yr-nmf">
                                     <rect key="frame" x="124.5" y="0.0" width="125" height="213"/>
-                                    <state key="normal" image="Pause Button"/>
+                                    <state key="normal" image="Play Button"/>
                                     <connections>
                                         <action selector="playPauseAction" destination="h9z-g0-5kz" eventType="touchUpInside" id="PBq-Fh-fOp"/>
                                     </connections>
@@ -118,6 +178,9 @@
             <color key="backgroundColor" systemColor="systemYellowColor"/>
             <constraints>
                 <constraint firstItem="c4K-oR-FaX" firstAttribute="leading" secondItem="q6g-Oe-1ns" secondAttribute="leading" constant="20" id="COo-9d-SI9"/>
+                <constraint firstItem="GSO-sF-zMU" firstAttribute="leading" secondItem="q6g-Oe-1ns" secondAttribute="leading" id="DZi-7u-VeG"/>
+                <constraint firstItem="q6g-Oe-1ns" firstAttribute="trailing" secondItem="GSO-sF-zMU" secondAttribute="trailing" id="I3X-Wh-Bim"/>
+                <constraint firstItem="GSO-sF-zMU" firstAttribute="top" secondItem="q6g-Oe-1ns" secondAttribute="top" id="PT2-mQ-M2h"/>
                 <constraint firstItem="q6g-Oe-1ns" firstAttribute="bottom" secondItem="c4K-oR-FaX" secondAttribute="bottom" id="UkO-R3-cVa"/>
                 <constraint firstItem="q6g-Oe-1ns" firstAttribute="trailing" secondItem="c4K-oR-FaX" secondAttribute="trailing" constant="20" id="WYy-yu-Trj"/>
                 <constraint firstItem="c4K-oR-FaX" firstAttribute="top" secondItem="q6g-Oe-1ns" secondAttribute="top" id="csq-Qm-pIi"/>
@@ -127,7 +190,12 @@
                 <outlet property="currentTimeLabel" destination="Sqq-Yc-d80" id="7qy-5m-x1s"/>
                 <outlet property="currentTimeSlider" destination="WE5-KI-cS6" id="LAY-Tj-Fp3"/>
                 <outlet property="durationLabel" destination="pJy-bP-PMc" id="zgo-yt-FOl"/>
+                <outlet property="miniPlayPauseButton" destination="wg2-3G-Roy" id="XK2-lV-3ZL"/>
+                <outlet property="miniPlayerContainer" destination="GSO-sF-zMU" id="Uvv-20-t2D"/>
+                <outlet property="miniTrackImageView" destination="tsM-ao-bm1" id="zja-AJ-tmI"/>
+                <outlet property="miniTrackNameLabel" destination="cMR-uy-fLg" id="rII-k8-goz"/>
                 <outlet property="playPauseButton" destination="Qor-yr-nmf" id="mVp-Ny-1bA"/>
+                <outlet property="playerContainer" destination="c4K-oR-FaX" id="DSY-wx-tVs"/>
                 <outlet property="trackImageView" destination="vmJ-AF-jxM" id="lZ7-MO-MAz"/>
                 <outlet property="trackNameLabel" destination="uDW-ux-rhi" id="mN2-ib-U4u"/>
                 <outlet property="volumeSlider" destination="5r2-Fh-9Rh" id="TK7-6w-qTf"/>
@@ -141,7 +209,13 @@
         <image name="Fast forward" width="34" height="20"/>
         <image name="Icon Max" width="17" height="17"/>
         <image name="Icon Min" width="7" height="12"/>
-        <image name="Pause Button" width="28" height="36"/>
+        <image name="Play Button" width="59" height="59"/>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

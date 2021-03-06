@@ -14,6 +14,17 @@ protocol TrackListDelegate: class {
 }
 
 class TrackDetailView: UIView {
+    
+    // MARK: - Mini Player Outlets
+    
+    @IBOutlet var miniPlayerContainer: UIView!
+    @IBOutlet var miniTrackImageView: UIImageView!
+    @IBOutlet var miniTrackNameLabel: UILabel!
+    @IBOutlet var miniPlayPauseButton: UIButton!
+    
+    // MARK: - Main Player Outlets
+    
+    @IBOutlet var playerContainer: UIStackView!
     @IBOutlet var trackImageView: UIImageView!
     @IBOutlet var currentTimeSlider: UISlider!
     @IBOutlet var currentTimeLabel: UILabel!
@@ -26,6 +37,7 @@ class TrackDetailView: UIView {
     private var player: AudioPlayerProtocol = AudioPlayer()
     private let scale: CGFloat = 0.8
     weak var delegate: TrackListDelegate?
+    weak var tabBarDelegate: MainTabBarControllerDelegate?
     
     override class func awakeFromNib() {
         super.awakeFromNib()
@@ -34,6 +46,8 @@ class TrackDetailView: UIView {
     // MARK: - Setup
     
     func set(viewModel: SearchViewModel.Cell) {
+        miniPlayerInit(viewModel: viewModel)
+        
         trackNameLabel.text = viewModel.trackName
         authorNameLabel.text = viewModel.artistName
         
@@ -51,6 +65,14 @@ class TrackDetailView: UIView {
         guard let previewUrl = viewModel.previewUrl else { return }
         player.add(trackUrlString: previewUrl)
         player.play()
+    }
+    
+    private func miniPlayerInit(viewModel: SearchViewModel.Cell) {
+        miniTrackNameLabel.text = viewModel.trackName
+        
+        if let miniTrackImageUrl = URL(string: viewModel.iconUrlString ?? "") {
+            miniTrackImageView.sd_setImage(with: miniTrackImageUrl)
+        }
     }
     
     
@@ -91,7 +113,7 @@ class TrackDetailView: UIView {
     
     // MARK: - IBActions
     @IBAction func dragDownButtonTapped() {
-        self.removeFromSuperview()
+        tabBarDelegate?.minimizeTrackDetailContoller()
     }
     
     @IBAction func handleCurrentTimeSlider() {
@@ -132,11 +154,13 @@ extension TrackDetailView: AudioPlayerDelegate {
     func onPlay() {
         enlargeTrackImageView()
         playPauseButton.setImage(UIImage.init(named: "Pause Button"), for: .normal)
+        miniPlayPauseButton.setImage(UIImage.init(named: "Pause Button"), for: .normal)
     }
     
     func onPause() {
         reduceTrackImageView()
         playPauseButton.setImage(UIImage.init(named: "Play Button"), for: .normal)
+        miniPlayPauseButton.setImage(UIImage.init(named: "Play Button"), for: .normal)
     }
     
     func timeObserver(currentTime: CMTime) {
