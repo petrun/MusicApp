@@ -39,8 +39,10 @@ class TrackDetailView: UIView {
     weak var delegate: TrackListDelegate?
     weak var tabBarDelegate: MainTabBarControllerDelegate?
     
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
+        
+        setupGestures()
     }
     
     // MARK: - Setup
@@ -58,6 +60,7 @@ class TrackDetailView: UIView {
         
         trackImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
         
+        player.volume = 0.5
         volumeSlider.value = player.volume
         currentTimeSlider.value = 0
         
@@ -75,6 +78,84 @@ class TrackDetailView: UIView {
         }
     }
     
+    // MARK: - Gestures
+    
+    private func setupGestures() {
+        miniPlayerContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximazed)))
+        miniPlayerContainer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
+        addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismissalPan)))
+    }
+    
+    @objc private func handleTapMaximazed() {
+        tabBarDelegate?.maximizeTrackDetailContoller(viewModel: nil)
+    }
+    
+    @objc private func handlePan(gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .changed:
+            handlePanChanged(gesture: gesture)
+        case .ended:
+            handlePanEnded(gesture: gesture)
+        @unknown default:
+            print("default case")
+        }
+    }
+    
+    @objc private func handleDismissalPan(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        
+        switch gesture.state {
+        case .changed:
+            playerContainer.transform = CGAffineTransform(translationX: 0, y: translation.y)
+        case .ended:
+            UIView.animate(
+                withDuration: 0.5,
+                delay: 0,
+                usingSpringWithDamping: 0.7,
+                initialSpringVelocity: 1,
+                options: .curveEaseOut
+            ) { [weak self] in
+                self?.playerContainer.transform = .identity
+                
+                if translation.y > 50 {
+                    self?.tabBarDelegate?.minimizeTrackDetailContoller()
+                }
+            }
+
+        @unknown default:
+            print("default case")
+        }
+    }
+    
+    func handlePanChanged(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        self.transform = CGAffineTransform(translationX: 0, y: translation.y)
+        
+        let newAlpha = 1 + translation.y / 200
+        miniPlayerContainer.alpha = max(newAlpha, 0)
+        playerContainer.alpha = -translation.y/200
+    }
+    
+    func handlePanEnded(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        let velocity = gesture.velocity(in: self.superview)
+        
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.7,
+            initialSpringVelocity: 1,
+            options: .curveEaseOut
+        ) { [weak self] in
+            self?.transform = .identity
+            if translation.y < -200 || velocity.y < -500 {
+                self?.tabBarDelegate?.maximizeTrackDetailContoller(viewModel: nil)
+            } else {
+                self?.miniPlayerContainer.alpha = 1
+                self?.playerContainer.alpha = 0
+            }
+        }
+    }
     
     // MARK: - Time Setup
     
