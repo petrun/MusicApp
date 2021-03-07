@@ -31,6 +31,8 @@
 		A12571C125E339F300C9C155 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12571C025E339F300C9C155 /* Array.swift */; };
 		A15029FC25EC5AF9007D796B /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15029FB25EC5AF9007D796B /* TrackCell.xib */; };
 		A15029FF25EC5B32007D796B /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15029FE25EC5B32007D796B /* TrackCell.swift */; };
+		A163F9FC25F4200900F00B68 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = A163F9FB25F4200900F00B68 /* Library.swift */; };
+		A163FA0025F4428600F00B68 /* LibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A163F9FF25F4428600F00B68 /* LibraryCell.swift */; };
 		A16BAF4925EA9959009EB3CF /* SearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A16BAF4825EA9959009EB3CF /* SearchViewController.storyboard */; };
 		A16BAF4E25EAA07B009EB3CF /* UIViewController + Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16BAF4D25EAA07B009EB3CF /* UIViewController + Storyboard.swift */; };
 		A1E2AB8A25E7105900554738 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E2AB8925E7105900554738 /* SearchResponse.swift */; };
@@ -67,6 +69,8 @@
 		A12571C025E339F300C9C155 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		A15029FB25EC5AF9007D796B /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
 		A15029FE25EC5B32007D796B /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
+		A163F9FB25F4200900F00B68 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		A163F9FF25F4428600F00B68 /* LibraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCell.swift; sourceTree = "<group>"; };
 		A16BAF4825EA9959009EB3CF /* SearchViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchViewController.storyboard; sourceTree = "<group>"; };
 		A16BAF4D25EAA07B009EB3CF /* UIViewController + Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Storyboard.swift"; sourceTree = "<group>"; };
 		A1E2AB8925E7105900554738 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
@@ -152,10 +156,11 @@
 		A125719625E2FF8500C9C155 /* MusicApp */ = {
 			isa = PBXGroup;
 			children = (
-				A11B685B25E9EC270013C822 /* Search */,
 				A125719725E2FF8500C9C155 /* AppDelegate.swift */,
 				A125719925E2FF8500C9C155 /* SceneDelegate.swift */,
+				A163F9FB25F4200900F00B68 /* Library.swift */,
 				A12571AC25E31AE000C9C155 /* MainTabBarController.swift */,
+				A11B685B25E9EC270013C822 /* Search */,
 				A125719B25E2FF8500C9C155 /* ContentView.swift */,
 				A125719D25E2FF8600C9C155 /* Assets.xcassets */,
 				A12571A225E2FF8600C9C155 /* LaunchScreen.storyboard */,
@@ -164,6 +169,7 @@
 				A12571B725E3249A00C9C155 /* LibraryViewController.swift */,
 				A12571BA25E32BCD00C9C155 /* Extensions */,
 				A16BAF4625EA989A009EB3CF /* Services */,
+				A163F9FF25F4428600F00B68 /* LibraryCell.swift */,
 			);
 			path = MusicApp;
 			sourceTree = "<group>";
@@ -341,11 +347,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A163FA0025F4428600F00B68 /* LibraryCell.swift in Sources */,
 				A1E8991225F2F65E0065BBE0 /* UIApplication.swift in Sources */,
 				A118565A25F029FE004B693F /* UIView.swift in Sources */,
 				A118566025F0737A004B693F /* AudioPlayerService.swift in Sources */,
 				A11B686825E9ECE90013C822 /* SearchViewController.swift in Sources */,
 				A11B686425E9ECE90013C822 /* SearchPresenter.swift in Sources */,
+				A163F9FC25F4200900F00B68 /* Library.swift in Sources */,
 				A16BAF4E25EAA07B009EB3CF /* UIViewController + Storyboard.swift in Sources */,
 				A118565D25F058C0004B693F /* CMTime.swift in Sources */,
 				A114629825EDBC8F00D190B8 /* FooterView.swift in Sources */,
