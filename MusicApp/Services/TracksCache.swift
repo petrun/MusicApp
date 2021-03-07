@@ -27,6 +27,10 @@ class TracksCache {
         }
         listOfTracks.insert(track)
         
+        save(listOfTracks: listOfTracks)
+    }
+    
+    private func save(listOfTracks: Cells) {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(listOfTracks) {
             userDefaults.set(encoded, forKey: cacheKey)
@@ -47,6 +51,15 @@ class TracksCache {
         
         return tracks
     }
+    
+    func deleteBy(id: String) {
+        var listOfTracks = getAll()
+        if let indexToRemove = listOfTracks.firstIndex(where: { $0.id == id }) {
+            listOfTracks.remove(at: indexToRemove)
+        }
+
+        save(listOfTracks: listOfTracks)
+     }
     
     func contains(track: Cell) -> Bool {
         getAll().contains(track)

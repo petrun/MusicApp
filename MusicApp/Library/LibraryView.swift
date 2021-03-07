@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct LibraryView: View {
-    var tracks: [SearchViewModel.Cell] = Array(TracksCache.shared.getAll())
+    @State var tracks: [SearchViewModel.Cell] = Array(TracksCache.shared.getAll())
+    
+    @State private var isAlertShowing = false
+    @State private var selectedTrack: SearchViewModel.Cell?
+    
+    var tabBarDelegate: MainTabBarControllerDelegate?
     
     var body: some View {
         NavigationView {
@@ -17,6 +22,8 @@ struct LibraryView: View {
                     HStack(spacing: 20) {
                         Button(action: {
                             print("Click Play button")
+                            let track = tracks[0]
+                            tabBarDelegate?.maximizeTrackDetailContoller(viewModel: track)
                         }, label: {
                             Image(systemName: "play.fill")
                                 .frame(width: abs(geometry.size.width / 2 - 10), height: 50)
@@ -26,7 +33,8 @@ struct LibraryView: View {
                                 
                         })
                         Button(action: {
-                            print("Click Repeat button")
+                            print("Click Reload button")
+                            self.tracks = Array(TracksCache.shared.getAll())
                         }, label: {
                             Image(systemName: "arrow.triangle.2.circlepath")
                                 .frame(width: geometry.size.width / 2 - 10, height: 50)
@@ -38,14 +46,55 @@ struct LibraryView: View {
                 }.padding().frame(height: 50)
 
                 Divider().padding()
-                List(tracks){ track in
-                    LibraryCell(cell: track)
-                }.listStyle(PlainListStyle())
+                List{
+                    ForEach(tracks){ track in
+                        LibraryCell(cell: track)
+                            .gesture(
+                                LongPressGesture().onEnded { _ in
+                                    self.selectedTrack = track
+                                    self.isAlertShowing = true
+                                }
+                                .simultaneously(with: TapGesture().onEnded { _ in
+                                    print("ONE TAP END")
+                                    self.tabBarDelegate?.maximizeTrackDetailContoller(viewModel: track)
+                                })
+                            )
+                    }.onDelete(perform: delete)
+                }
+                .listStyle(PlainListStyle())
+                .actionSheet(isPresented: $isAlertShowing, content: {
+                    ActionSheet(
+                        title: Text("Delete track from library?"),
+                        buttons: [
+                            .destructive(Text("Delete"), action: { // [weak self] in
+                                guard let track = self.selectedTrack else { return }
+                                self.delete(track: track)
+                            }),
+                            .cancel()
+                        ]
+                    )
+                })
             }
             
             .navigationTitle("Library")
         }
     }
+    
+    func delete(at offsets: IndexSet) {
+        let idsToDelete = offsets.map { self.tracks[$0].id }
+        tracks.remove(atOffsets: offsets)
+        for trackId in idsToDelete {
+            TracksCache.shared.deleteBy(id: trackId)
+        }
+     }
+    
+    func delete(track: SearchViewModel.Cell) {
+        guard let trackIndex = tracks.firstIndex(where: { $0 == track }) else { return }
+        let trackId = track.id
+        
+        tracks.remove(at: trackIndex)
+        TracksCache.shared.deleteBy(id: trackId)
+     }
 }
 
 struct Library_Previews: PreviewProvider {
