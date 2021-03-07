@@ -27,6 +27,7 @@ class SearchPresenter: SearchPresentationLogic {
     
     private func cellViewModel(from track: Track) -> SearchViewModel.Cell {
         return .init(
+            trackId: track.trackId,
             iconUrlString: track.artworkUrl100,
             trackName: track.trackName,
             collectionName: track.collectionName ?? "",

@@ -42,6 +42,12 @@ class TrackDetailView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        trackImageView.clipsToBounds = true
+        trackImageView.layer.cornerRadius = 5
+        
+        miniTrackImageView.clipsToBounds = true
+        miniTrackImageView.layer.cornerRadius = 5
+        
         setupGestures()
     }
     
@@ -60,7 +66,6 @@ class TrackDetailView: UIView {
         
         trackImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
         
-        player.volume = 0.5
         volumeSlider.value = player.volume
         currentTimeSlider.value = 0
         

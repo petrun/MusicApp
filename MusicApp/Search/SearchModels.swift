@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 enum Search {
    
@@ -31,7 +32,9 @@ enum Search {
 }
 
 struct SearchViewModel {
-    struct Cell: TrackCellViewModel {
+    struct Cell: TrackCellViewModel, Codable, Hashable, Identifiable {
+        var id: String { String(trackId) }
+        var trackId: Int64
         var iconUrlString: String?
         var trackName: String
         var collectionName: String

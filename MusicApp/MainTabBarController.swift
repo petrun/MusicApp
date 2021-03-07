@@ -28,7 +28,7 @@ class MainTabBarController: UITabBarController {
         tabBar.tintColor = UIColor(hex: "#FD2D55")
         setupTrackDetailView()
         
-        let library = Library()
+        let library = LibraryView()
         let libraryVC = UIHostingController(rootView: library)
         libraryVC.tabBarItem.image = UIImage(named: "library")
         libraryVC.tabBarItem.title = "Libraty"

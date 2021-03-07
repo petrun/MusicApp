@@ -13,6 +13,7 @@ struct SearchResponse: Decodable {
 }
 
 struct Track: Decodable {
+    var trackId: Int64
     var artistName: String
     var collectionName: String?
     var trackName: String

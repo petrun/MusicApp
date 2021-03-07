@@ -40,9 +40,25 @@
                         <color key="textColor" red="0.72156862749999995" green="0.72156862749999995" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bj8-8m-vzk">
+                        <rect key="frame" x="374" y="34" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="Dmn-qc-YsX"/>
+                            <constraint firstAttribute="width" constant="16" id="rIs-uJ-n8Q"/>
+                        </constraints>
+                        <state key="normal" image="Add"/>
+                        <connections>
+                            <action selector="addTrackAction" destination="GgR-dJ-9pt" eventType="touchUpInside" id="W4G-tF-QZa"/>
+                        </connections>
+                    </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="Bj8-8m-vzk" firstAttribute="centerY" secondItem="w5p-KK-LXx" secondAttribute="centerY" id="f05-CE-7J4"/>
+                    <constraint firstAttribute="trailing" secondItem="Bj8-8m-vzk" secondAttribute="trailing" constant="24" id="jEj-o4-ZKc"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="addTrackButton" destination="Bj8-8m-vzk" id="Pya-Gm-iHh"/>
                 <outlet property="artistNameLabel" destination="sgl-UF-CwI" id="qnp-0g-fRt"/>
                 <outlet property="collectionNameLabel" destination="xCB-FS-Vjf" id="fZC-xS-oGb"/>
                 <outlet property="trackImageView" destination="8bc-qf-CrP" id="QrL-j3-pWc"/>
@@ -51,4 +67,7 @@
             <point key="canvasLocation" x="-110.14492753623189" y="57.589285714285708"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Add" width="16" height="16"/>
+    </resources>
 </document>
