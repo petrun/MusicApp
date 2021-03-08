@@ -18,7 +18,7 @@ class SearchPresenter: SearchPresentationLogic {
     func presentData(response: Search.Model.Response.ResponseType) {
         switch response {
         case .presentTracks(tracks: let tracks):
-            let cells = tracks.map {cellViewModel(from: $0)}
+            let cells = tracks.map { cellViewModel(from: $0) }
             let searchViewModel = SearchViewModel.init(cells: cells)
             
             viewController?.displayData(viewModel: .displayTracks(searchViewModel: searchViewModel))
@@ -26,7 +26,7 @@ class SearchPresenter: SearchPresentationLogic {
     }
     
     private func cellViewModel(from track: Track) -> SearchViewModel.Cell {
-        return .init(
+        SearchViewModel.Cell(
             trackId: track.trackId,
             iconUrlString: track.artworkUrl100,
             trackName: track.trackName,
@@ -35,5 +35,4 @@ class SearchPresenter: SearchPresentationLogic {
             previewUrl: track.previewUrl
         )
     }
-    
 }

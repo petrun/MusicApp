@@ -25,28 +25,20 @@ protocol AudioPlayerProtocol: class {
 
 class AudioPlayer: AVPlayer, AudioPlayerProtocol {
     var duration: CMTime? {
-        get {
-            return self.currentItem?.duration
-        }
+        return self.currentItem?.duration
     }
     
     var isPlaying: Bool {
-        get {
-            return self.rate == 1
-        }
+        return self.rate == 1
     }
     
     var currentTimeSeconds: Float64 {
-        get {
-            return CMTimeGetSeconds(self.currentTime())
-        }
+        return CMTimeGetSeconds(self.currentTime())
     }
     
     var durationSeconds: Float64? {
-        get {
-            guard let duration = self.duration else { return nil }
-            return CMTimeGetSeconds(duration)
-        }
+        guard let duration = self.duration else { return nil }
+        return CMTimeGetSeconds(duration)
     }
     
     weak var delegate: AudioPlayerDelegate?
@@ -58,7 +50,7 @@ class AudioPlayer: AVPlayer, AudioPlayerProtocol {
         self.addObserver(self, forKeyPath: "rate", options: [], context: nil)
         
         let interval = CMTimeMake(value: 1, timescale: 2)
-        self.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] (currentTime) in
+        self.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] currentTime in
             self?.delegate?.timeObserver(currentTime: currentTime)
         }
     }
@@ -89,7 +81,6 @@ class AudioPlayer: AVPlayer, AudioPlayerProtocol {
             }
         }
     }
-    
 }
 
 protocol AudioPlayerDelegate: class {

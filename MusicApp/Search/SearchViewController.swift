@@ -13,7 +13,6 @@ protocol SearchDisplayLogic: class {
 }
 
 class SearchViewController: UIViewController, SearchDisplayLogic {
-    
     var interactor: SearchBusinessLogic?
     var router: (NSObjectProtocol & SearchRoutingLogic)?
     weak var player: Player?
@@ -41,8 +40,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     
     // MARK: Routing
     
-    
-    
+
     // MARK: View lifecycle
     
     override func viewDidLoad() {
@@ -60,7 +58,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         searchController.obscuresBackgroundDuringPresentation = false
     }
     
-    private func setupTableView() {        
+    private func setupTableView() {
         let trackCellNib = UINib(nibName: "TrackCell", bundle: nil)
         table.register(trackCellNib, forCellReuseIdentifier: TrackCell.reuseId)
         table.tableFooterView = footerView
@@ -74,7 +72,6 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
             footerView.hideLoader()
         }
     }
-    
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -107,7 +104,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        searchViewModel.cells.count > 0 ? 0 : 250
+        searchViewModel.cells.isEmpty ? 250 : 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -120,36 +117,34 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - UISearchBarDelegate
 
 extension SearchViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {        
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
             self?.footerView.showLoader()
             self?.interactor?.makeRequest(request: Search.Model.Request.RequestType.getTracks(searchText: searchText))
-        })
+        }
     }
 }
 
 
 extension SearchViewController: PlayListDelegate {
-
     private func getTrack(isNextTrack: Bool) -> SearchViewModel.Cell? {
         guard let indexPath = table.indexPathForSelectedRow else { return nil }
-
+        
         let newIndex = isNextTrack ? indexPath.row + 1 : indexPath.row - 1
         guard newIndex >= 0 && newIndex < searchViewModel.cells.count else { return nil }
-
+        
         let newIndexPath = IndexPath(row: newIndex, section: indexPath.section)
-
+        
         table.selectRow(at: newIndexPath, animated: false, scrollPosition: .top)
         return searchViewModel.cells[newIndex]
     }
-
+    
     func getNextTrack() -> SearchViewModel.Cell? {
         getTrack(isNextTrack: true)
     }
-
+    
     func getPreviousTrack() -> SearchViewModel.Cell? {
         getTrack(isNextTrack: false)
     }
-
 }

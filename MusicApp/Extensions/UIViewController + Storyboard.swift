@@ -12,10 +12,10 @@ extension UIViewController {
         let name = String(describing: T.self)
         let storyboard = UIStoryboard(name: name, bundle: nil)
         
-        guard let VC = storyboard.instantiateInitialViewController() as? T else {
+        guard let viewController = storyboard.instantiateInitialViewController() as? T else {
             fatalError("Error: Not found initial VC in \(name) storyboard")
         }
         
-        return VC
+        return viewController
     }
 }

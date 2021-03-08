@@ -16,7 +16,6 @@ protocol TrackCellViewModel {
 }
 
 class TrackCell: UITableViewCell {
-    
     static let reuseId = "TrackCell"
     
     @IBOutlet var trackImageView: UIImageView!

@@ -10,25 +10,23 @@ import UIKit
 import SwiftUI
 
 enum Search {
-   
-  enum Model {
-    struct Request {
-      enum RequestType {
-        case getTracks(searchText: String)
-      }
+    enum Model {
+        struct Request {
+            enum RequestType {
+                case getTracks(searchText: String)
+            }
+        }
+        struct Response {
+            enum ResponseType {
+                case presentTracks(tracks: [Track])
+            }
+        }
+        struct ViewModel {
+            enum ViewModelData {
+                case displayTracks(searchViewModel: SearchViewModel)
+            }
+        }
     }
-    struct Response {
-      enum ResponseType {
-        case presentTracks(tracks: [Track])
-      }
-    }
-    struct ViewModel {
-      enum ViewModelData {
-        case displayTracks(searchViewModel: SearchViewModel)
-      }
-    }
-  }
-  
 }
 
 struct SearchViewModel {

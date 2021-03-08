@@ -9,20 +9,19 @@ import UIKit
 import SwiftUI
 
 class MainTabBarController: UITabBarController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tabBar.tintColor = UIColor(hex: "#FD2D55")
 
         initPlayer()
 
-        viewControllers  = [
+        viewControllers = [
             initNavigationViewController(),
             initLibratyViewController()
         ]
     }
-    
+
     private func initNavigationViewController() -> UIViewController {
         let title = "Search"
         let rootViewController: SearchViewController = SearchViewController.loadFromStoryboard()
@@ -32,7 +31,7 @@ class MainTabBarController: UITabBarController {
         navigationVC.tabBarItem.title = title
         rootViewController.navigationItem.title = title
         navigationVC.navigationBar.prefersLargeTitles = true
-        
+
         return navigationVC
     }
 
@@ -50,5 +49,4 @@ class MainTabBarController: UITabBarController {
     private func initPlayer() {
         Player.shared.setup(view: view, tabBar: tabBar)
     }
-    
 }

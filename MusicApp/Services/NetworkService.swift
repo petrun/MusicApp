@@ -9,10 +9,9 @@ import Foundation
 import Alamofire
 
 class NetworkService {
-        
     func fetchTracks(_ searchText: String, completion: @escaping ([Track]) -> Void) {
         let url = "https://itunes.apple.com/search"
-        let parameters: [String:Any] = [
+        let parameters: [String: Any] = [
             "term": searchText,
             "entity": "song",
             "limit": 10
@@ -25,7 +24,6 @@ class NetworkService {
                     return
                 }
                 completion(items.results)
-          }
+            }
     }
-    
 }

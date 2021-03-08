@@ -15,7 +15,7 @@ class TracksCache {
     private let cacheKey = "tracksLibrary"
     private var tracksList: Tracks!
     
-    static var shared: TracksCache = TracksCache()
+    static var shared = TracksCache()
 
     private init() {
         tracksList = self.loadAllFromStore()
@@ -40,7 +40,7 @@ class TracksCache {
         }
 
         save(tracksList)
-     }
+    }
     
     func contains(track: Track) -> Bool {
         tracksList.contains(track)
@@ -48,8 +48,9 @@ class TracksCache {
 
     private func loadAllFromStore() -> Tracks {
         let decoder = JSONDecoder()
-        guard let savedTracks = userDefaults.object(forKey: cacheKey) as? Data,
-              let tracks = try? decoder.decode(Tracks.self, from: savedTracks) as Tracks
+        guard
+            let savedTracks = userDefaults.object(forKey: cacheKey) as? Data,
+            let tracks = try? decoder.decode(Tracks.self, from: savedTracks) as Tracks
         else {
             return Tracks()
         }
@@ -63,5 +64,4 @@ class TracksCache {
             userDefaults.set(encoded, forKey: cacheKey)
         }
     }
-
 }

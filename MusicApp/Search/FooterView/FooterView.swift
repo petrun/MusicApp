@@ -9,7 +9,7 @@ import UIKit
 
 class FooterView: UIView {
     private var label: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false

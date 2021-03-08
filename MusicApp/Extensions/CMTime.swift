@@ -9,7 +9,6 @@ import Foundation
 import AVFoundation
 
 extension CMTime {
-    
     func toDisplayString() -> String {
         guard !CMTimeGetSeconds(self).isNaN else { return "" }
         
@@ -19,5 +18,4 @@ extension CMTime {
         
         return String(format: "%02d:%02d", minutes, seconds)
     }
-    
 }

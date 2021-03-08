@@ -6,7 +6,7 @@ import Foundation
 import UIKit
 
 class Player {
-    private let playerView: PlayerView!
+    private let playerView: PlayerView
 
     private var view: UIView!
     private var tabBar: UITabBar!
@@ -28,16 +28,19 @@ class Player {
 
         view.insertSubview(playerView, belowSubview: tabBar)
 
-        minimizedTopAnchorConstraint = playerView.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -64)
-        maximizedTopAnchorConstraint = playerView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height)
-        bottomAnchorConstraint = playerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.height)
+        minimizedTopAnchorConstraint = playerView.topAnchor
+            .constraint(equalTo: tabBar.topAnchor, constant: -64)
+        maximizedTopAnchorConstraint = playerView.topAnchor
+            .constraint(equalTo: view.topAnchor, constant: view.frame.height)
+        bottomAnchorConstraint = playerView.bottomAnchor
+            .constraint(equalTo: view.bottomAnchor, constant: view.frame.height)
 
         bottomAnchorConstraint.isActive = true
 
         playerView.translatesAutoresizingMaskIntoConstraints = false
         playerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         playerView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-//        playerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        //        playerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 
         maximizedTopAnchorConstraint.isActive = true
     }
@@ -50,11 +53,9 @@ class Player {
     public func minimize() {
         minimizePlayer()
     }
-
 }
 
 extension Player: ResizeDelegate {
-
     func maximizePlayer(viewModel: SearchViewModel.Cell?) {
         minimizedTopAnchorConstraint.isActive = false
         maximizedTopAnchorConstraint.isActive = true
@@ -62,11 +63,11 @@ extension Player: ResizeDelegate {
         bottomAnchorConstraint.constant = 0
 
         UIView.animate(
-                withDuration: 0.5,
-                delay: 0,
-                usingSpringWithDamping: 0.8,
-                initialSpringVelocity: 1,
-                options: .curveEaseOut
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 1,
+            options: .curveEaseOut
         ) {
             self.view.layoutIfNeeded()
             self.tabBar.alpha = 0
@@ -85,11 +86,11 @@ extension Player: ResizeDelegate {
         minimizedTopAnchorConstraint.isActive = true
 
         UIView.animate(
-                withDuration: 0.5,
-                delay: 0,
-                usingSpringWithDamping: 0.8,
-                initialSpringVelocity: 1,
-                options: .curveEaseOut
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 1,
+            options: .curveEaseOut
         ) {
             self.view.layoutIfNeeded()
             self.tabBar.alpha = 1
@@ -97,5 +98,4 @@ extension Player: ResizeDelegate {
             self.playerView.playerContainer.alpha = 0
         }
     }
-
 }

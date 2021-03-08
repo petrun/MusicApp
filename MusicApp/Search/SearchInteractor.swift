@@ -13,7 +13,6 @@ protocol SearchBusinessLogic {
 }
 
 class SearchInteractor: SearchBusinessLogic {
-
     var presenter: SearchPresentationLogic?
     var service: SearchService?
 
@@ -32,5 +31,4 @@ class SearchInteractor: SearchBusinessLogic {
             }
         }
     }
-
 }

@@ -19,7 +19,6 @@ protocol ResizeDelegate: class {
 }
 
 class PlayerView: UIView {
-    
     // MARK: - Mini Player Outlets
     
     @IBOutlet var miniPlayerContainer: UIView!
@@ -91,8 +90,12 @@ class PlayerView: UIView {
     // MARK: - Gestures
     
     private func setupGestures() {
-        miniPlayerContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximized)))
-        miniPlayerContainer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
+        miniPlayerContainer.addGestureRecognizer(
+            UITapGestureRecognizer(target: self, action: #selector(handleTapMaximized))
+        )
+        miniPlayerContainer.addGestureRecognizer(
+            UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        )
         addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismissalPan)))
     }
     
@@ -143,7 +146,7 @@ class PlayerView: UIView {
         
         let newAlpha = 1 + translation.y / 200
         miniPlayerContainer.alpha = max(newAlpha, 0)
-        playerContainer.alpha = -translation.y/200
+        playerContainer.alpha = -translation.y / 200
     }
     
     func handlePanEnded(gesture: UIPanGestureRecognizer) {
@@ -238,7 +241,6 @@ class PlayerView: UIView {
     @IBAction func handleVolumeSlider() {
         player.volume = volumeSlider.value
     }
-    
 }
 
 extension PlayerView: AudioPlayerDelegate {
@@ -263,5 +265,4 @@ extension PlayerView: AudioPlayerDelegate {
         durationLabel.text = "-\(durationTimeText)"
         updateCurrentTimeSlider()
     }
-    
 }

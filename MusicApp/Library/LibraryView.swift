@@ -25,21 +25,20 @@ struct LibraryView: View {
                             playTrack(track: tracks.first)
                         }, label: {
                             Image(systemName: "play.fill")
-                                    .frame(width: abs(geometry.size.width / 2 - 10), height: 50)
-                                    .accentColor(.red)
-                                    .background(Color(.lightGray))
-                                    .cornerRadius(10)
-
+                                .frame(width: abs(geometry.size.width / 2 - 10), height: 50)
+                                .accentColor(.red)
+                                .background(Color(.lightGray))
+                                .cornerRadius(10)
                         })
                         Button(action: {
                             print("Click Reload button")
                             self.tracks = TracksCache.shared.getAll()
                         }, label: {
                             Image(systemName: "arrow.triangle.2.circlepath")
-                                    .frame(width: geometry.size.width / 2 - 10, height: 50)
-                                    .accentColor(.red)
-                                    .background(Color(.lightGray))
-                                    .cornerRadius(10)
+                                .frame(width: geometry.size.width / 2 - 10, height: 50)
+                                .accentColor(.red)
+                                .background(Color(.lightGray))
+                                .cornerRadius(10)
                         })
                     }
                 }.padding().frame(height: 50)
@@ -48,35 +47,35 @@ struct LibraryView: View {
                 List {
                     ForEach(tracks) { track in
                         LibraryCell(cell: track)
-                                .gesture(
-                                        LongPressGesture().onEnded { _ in
-                                                    self.selectedTrack = track
-                                                    self.isAlertShowing = true
-                                                }
-                                                .simultaneously(with: TapGesture().onEnded { _ in
-                                                    playTrack(track: track)
-                                                })
-                                )
+                            .gesture(
+                                LongPressGesture().onEnded { _ in
+                                    self.selectedTrack = track
+                                    self.isAlertShowing = true
+                                }
+                                .simultaneously(with: TapGesture().onEnded { _ in
+                                    playTrack(track: track)
+                                })
+                            )
                     }.onDelete(perform: delete)
                 }
-                        .listStyle(PlainListStyle())
-                        .actionSheet(isPresented: $isAlertShowing, content: {
-                            ActionSheet(
-                                    title: Text("Delete track from library?"),
-                                    buttons: [
-                                        .destructive(Text("Delete"), action: { // [weak self] in
-                                            guard let track = self.selectedTrack else {
-                                                return
-                                            }
-                                            self.delete(track: track)
-                                        }),
-                                        .cancel()
-                                    ]
-                            )
-                        })
+                .listStyle(PlainListStyle())
+                .actionSheet(isPresented: $isAlertShowing, content: {
+                    ActionSheet(
+                        title: Text("Delete track from library?"),
+                        buttons: [
+                            .destructive(Text("Delete"), action: { // [weak self] in
+                                guard let track = self.selectedTrack else {
+                                    return
+                                }
+                                self.delete(track: track)
+                            }),
+                            .cancel()
+                        ]
+                    )
+                })
             }
 
-                    .navigationTitle("Library")
+            .navigationTitle("Library")
         }
     }
 
@@ -110,7 +109,6 @@ struct LibraryView: View {
 }
 
 extension LibraryView: PlayListDelegate {
-    
     private func getTrack(isNextTrack: Bool) -> SearchViewModel.Cell? {
         guard
             let currentTrack = currentTrack,
@@ -133,26 +131,25 @@ extension LibraryView: PlayListDelegate {
     func getPreviousTrack() -> SearchViewModel.Cell? {
         getTrack(isNextTrack: false)
     }
-
 }
 
 struct Library_Previews: PreviewProvider {
     static let tracks: [SearchViewModel.Cell] = [
         .init(
-                trackId: 1057860639,
-                iconUrlString: "https://is5-ssl.mzstatic.com/image/thumb/Video113/v4/35/07/b2/3507b295-81d9-0df3-ad1e-09e42c9f50c1/pr_source.lsr/100x100bb.jpg",
-                trackName: "The Good Dinosaur",
-                collectionName: "Collection name",
-                artistName: "Peter Sohn",
-                previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview71/v4/14/8d/36/148d36b1-927e-f496-5b75-a4c1b3d490d7/mzaf_6015340690291060006.plus.aac.p.m4a"
+            trackId: 1057860639,
+            iconUrlString: "https://is5-ssl.mzstatic.com/image/thumb/Video113/v4/35/07/b2/3507b295-81d9-0df3-ad1e-09e42c9f50c1/pr_source.lsr/100x100bb.jpg",
+            trackName: "The Good Dinosaur",
+            collectionName: "Collection name",
+            artistName: "Peter Sohn",
+            previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview71/v4/14/8d/36/148d36b1-927e-f496-5b75-a4c1b3d490d7/mzaf_6015340690291060006.plus.aac.p.m4a"
         ),
         .init(
-                trackId: 1057860640,
-                iconUrlString: "https://is5-ssl.mzstatic.com/image/thumb/Video113/v4/35/07/b2/3507b295-81d9-0df3-ad1e-09e42c9f50c1/pr_source.lsr/100x100bb.jpg",
-                trackName: "The Good Dinosaur",
-                collectionName: "Collection name",
-                artistName: "Peter Sohn",
-                previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview71/v4/14/8d/36/148d36b1-927e-f496-5b75-a4c1b3d490d7/mzaf_6015340690291060006.plus.aac.p.m4a"
+            trackId: 1057860640,
+            iconUrlString: "https://is5-ssl.mzstatic.com/image/thumb/Video113/v4/35/07/b2/3507b295-81d9-0df3-ad1e-09e42c9f50c1/pr_source.lsr/100x100bb.jpg",
+            trackName: "The Good Dinosaur",
+            collectionName: "Collection name",
+            artistName: "Peter Sohn",
+            previewUrl: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview71/v4/14/8d/36/148d36b1-927e-f496-5b75-a4c1b3d490d7/mzaf_6015340690291060006.plus.aac.p.m4a"
         )
     ]
     static var previews: some View {

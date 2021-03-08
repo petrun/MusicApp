@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DC188EFAE956411DA0D6223 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2DC18A9ED8FBEFF058DDE097 /* .swiftlint.yml */; };
 		2DC18D0EBD43AD2947F1FBF0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC182FDBB6AF41BEF4C9091 /* Player.swift */; };
 		A114629825EDBC8F00D190B8 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114629725EDBC8F00D190B8 /* FooterView.swift */; };
 		A114629D25EDD3A000D190B8 /* PlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A114629C25EDD3A000D190B8 /* PlayerView.xib */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		17E97FCAE6E861F4245833E1 /* Pods-MusicApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicApp.debug.xcconfig"; path = "Target Support Files/Pods-MusicApp/Pods-MusicApp.debug.xcconfig"; sourceTree = "<group>"; };
 		2DC182FDBB6AF41BEF4C9091 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		2DC18A9ED8FBEFF058DDE097 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		A114629725EDBC8F00D190B8 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		A114629C25EDD3A000D190B8 /* PlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerView.xib; sourceTree = "<group>"; };
 		A114629F25EDD3A900D190B8 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				A125719525E2FF8500C9C155 /* Products */,
 				47F773EA501DFAD798A30101 /* Pods */,
 				F32BCF57D32A70796DA14CAE /* Frameworks */,
+				2DC18A9ED8FBEFF058DDE097 /* .swiftlint.yml */,
 			);
 			sourceTree = "<group>";
 		};
@@ -244,6 +247,7 @@
 				A125719125E2FF8500C9C155 /* Frameworks */,
 				A125719225E2FF8500C9C155 /* Resources */,
 				F368D24E9E54B7AE92AA931D /* [CP] Embed Pods Frameworks */,
+				A12152E225F5C7C5006F75A9 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -297,6 +301,7 @@
 				A15029FC25EC5AF9007D796B /* TrackCell.xib in Resources */,
 				A16BAF4925EA9959009EB3CF /* SearchViewController.storyboard in Resources */,
 				A125719E25E2FF8600C9C155 /* Assets.xcassets in Resources */,
+				2DC188EFAE956411DA0D6223 /* .swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +329,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		A12152E225F5C7C5006F75A9 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		F368D24E9E54B7AE92AA931D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
