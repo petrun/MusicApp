@@ -16,7 +16,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     
     var interactor: SearchBusinessLogic?
     var router: (NSObjectProtocol & SearchRoutingLogic)?
-    weak var tabBarDelegate: MainTabBarControllerDelegate?
+    weak var player: Player?
     
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchViewModel = SearchViewModel.init(cells: [])
@@ -113,7 +113,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellViewModel = searchViewModel.cells[indexPath.row]
 
-        self.tabBarDelegate?.maximizeTrackDetailContoller(viewModel: cellViewModel)
+        player?.play(viewModel: cellViewModel, playListDelegate: self)
     }
 }
 
@@ -130,26 +130,26 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 
-extension SearchViewController: TrackListDelegate {
-    
+extension SearchViewController: PlayListDelegate {
+
     private func getTrack(isNextTrack: Bool) -> SearchViewModel.Cell? {
         guard let indexPath = table.indexPathForSelectedRow else { return nil }
-        
+
         let newIndex = isNextTrack ? indexPath.row + 1 : indexPath.row - 1
         guard newIndex >= 0 && newIndex < searchViewModel.cells.count else { return nil }
-        
+
         let newIndexPath = IndexPath(row: newIndex, section: indexPath.section)
-        
+
         table.selectRow(at: newIndexPath, animated: false, scrollPosition: .top)
         return searchViewModel.cells[newIndex]
     }
-    
+
     func getNextTrack() -> SearchViewModel.Cell? {
-        return getTrack(isNextTrack: true)
+        getTrack(isNextTrack: true)
     }
-    
+
     func getPreviousTrack() -> SearchViewModel.Cell? {
-        return getTrack(isNextTrack: false)
+        getTrack(isNextTrack: false)
     }
-    
+
 }

@@ -8,12 +8,17 @@
 import UIKit
 import AVFoundation
 
-protocol TrackListDelegate: class {
+protocol PlayListDelegate {
     func getNextTrack() -> SearchViewModel.Cell?
     func getPreviousTrack() -> SearchViewModel.Cell?
 }
 
-class TrackDetailView: UIView {
+protocol ResizeDelegate: class {
+    func minimizePlayer()
+    func maximizePlayer(viewModel: SearchViewModel.Cell?)
+}
+
+class PlayerView: UIView {
     
     // MARK: - Mini Player Outlets
     
@@ -36,8 +41,8 @@ class TrackDetailView: UIView {
     
     private var player: AudioPlayerProtocol = AudioPlayer()
     private let scale: CGFloat = 0.8
-    weak var delegate: TrackListDelegate?
-    weak var tabBarDelegate: MainTabBarControllerDelegate?
+    var playListDelegate: PlayListDelegate?
+    weak var resizeDelegate: ResizeDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -86,13 +91,13 @@ class TrackDetailView: UIView {
     // MARK: - Gestures
     
     private func setupGestures() {
-        miniPlayerContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximazed)))
+        miniPlayerContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximized)))
         miniPlayerContainer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
         addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismissalPan)))
     }
     
-    @objc private func handleTapMaximazed() {
-        tabBarDelegate?.maximizeTrackDetailContoller(viewModel: nil)
+    @objc private func handleTapMaximized() {
+        resizeDelegate?.maximizePlayer(viewModel: nil)
     }
     
     @objc private func handlePan(gesture: UIPanGestureRecognizer) {
@@ -123,7 +128,7 @@ class TrackDetailView: UIView {
                 self?.playerContainer.transform = .identity
                 
                 if translation.y > 50 {
-                    self?.tabBarDelegate?.minimizeTrackDetailContoller()
+                    self?.resizeDelegate?.minimizePlayer()
                 }
             }
 
@@ -154,7 +159,7 @@ class TrackDetailView: UIView {
         ) { [weak self] in
             self?.transform = .identity
             if translation.y < -200 || velocity.y < -500 {
-                self?.tabBarDelegate?.maximizeTrackDetailContoller(viewModel: nil)
+                self?.resizeDelegate?.maximizePlayer(viewModel: nil)
             } else {
                 self?.miniPlayerContainer.alpha = 1
                 self?.playerContainer.alpha = 0
@@ -199,7 +204,7 @@ class TrackDetailView: UIView {
     
     // MARK: - IBActions
     @IBAction func dragDownButtonTapped() {
-        tabBarDelegate?.minimizeTrackDetailContoller()
+        resizeDelegate?.minimizePlayer()
     }
     
     @IBAction func handleCurrentTimeSlider() {
@@ -221,12 +226,12 @@ class TrackDetailView: UIView {
     }
 
     @IBAction func previousTrack() {
-        guard let track = delegate?.getPreviousTrack() else { return }
+        guard let track = playListDelegate?.getPreviousTrack() else { return }
         set(viewModel: track)
     }
 
     @IBAction func nextTrack() {
-        guard let track = delegate?.getNextTrack() else { return }
+        guard let track = playListDelegate?.getNextTrack() else { return }
         set(viewModel: track)
     }
 
@@ -236,7 +241,7 @@ class TrackDetailView: UIView {
     
 }
 
-extension TrackDetailView: AudioPlayerDelegate {
+extension PlayerView: AudioPlayerDelegate {
     func onPlay() {
         enlargeTrackImageView()
         playPauseButton.setImage(UIImage.init(named: "Pause Button"), for: .normal)
