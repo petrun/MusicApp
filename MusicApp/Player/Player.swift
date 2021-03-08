@@ -15,9 +15,7 @@ class Player {
     private var maximizedTopAnchorConstraint: NSLayoutConstraint!
     private var bottomAnchorConstraint: NSLayoutConstraint!
 
-    static var shared = Player()
-
-    private init() {
+    required public init() {
         playerView = PlayerView.loadFromNib()
         playerView.resizeDelegate = self
     }

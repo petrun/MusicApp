@@ -9,12 +9,14 @@ import UIKit
 import SwiftUI
 
 class MainTabBarController: UITabBarController {
+    private let player = Player()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tabBar.tintColor = UIColor(hex: "#FD2D55")
 
-        initPlayer()
+        player.setup(view: view, tabBar: tabBar)
 
         viewControllers = [
             initNavigationViewController(),
@@ -25,7 +27,7 @@ class MainTabBarController: UITabBarController {
     private func initNavigationViewController() -> UIViewController {
         let title = "Search"
         let rootViewController: SearchViewController = SearchViewController.loadFromStoryboard()
-        rootViewController.player = Player.shared
+        rootViewController.player = player
         let navigationVC = UINavigationController(rootViewController: rootViewController)
         navigationVC.tabBarItem.image = UIImage(named: "search")
         navigationVC.tabBarItem.title = title
@@ -37,16 +39,12 @@ class MainTabBarController: UITabBarController {
 
     private func initLibratyViewController() -> UIViewController {
         var library = LibraryView()
-        library.player = Player.shared
+        library.player = player
 
         let libraryVC = UIHostingController(rootView: library)
         libraryVC.tabBarItem.image = UIImage(named: "library")
         libraryVC.tabBarItem.title = "Libraty"
 
         return libraryVC
-    }
-
-    private func initPlayer() {
-        Player.shared.setup(view: view, tabBar: tabBar)
     }
 }
