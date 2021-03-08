@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LibraryView: View {
-    @State var tracks: [SearchViewModel.Cell] = Array(TracksCache.shared.getAll())
+    @State var tracks: [SearchViewModel.Cell] = TracksCache.shared.getAll()
 
     @State private var isAlertShowing = false
     @State private var selectedTrack: SearchViewModel.Cell?
@@ -33,7 +33,7 @@ struct LibraryView: View {
                         })
                         Button(action: {
                             print("Click Reload button")
-                            self.tracks = Array(TracksCache.shared.getAll())
+                            self.tracks = TracksCache.shared.getAll()
                         }, label: {
                             Image(systemName: "arrow.triangle.2.circlepath")
                                     .frame(width: geometry.size.width / 2 - 10, height: 50)
